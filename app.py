@@ -15,7 +15,7 @@ st.sidebar.markdown("This application is a Streamlit dashboard used "
                     "to analyze sentiments of tweets 🐦")
 
 # Define a function to cache the data to prevent reloading every time the app is run
-@st.cache(persist=True)
+@st.cache_data(persist=True)
 def load_data():
     # Load the CSV file into a dataframe using Pandas' read_csv function
     data = pd.read_csv("Tweets.csv")
@@ -36,7 +36,7 @@ st.sidebar.markdown("### Number of tweets by sentiment")
 select = st.sidebar.selectbox('Visualization type', ['Bar plot', 'Pie chart'], key='sidebar-1')
 sentiment_count = data['airline_sentiment'].value_counts()
 sentiment_count = pd.DataFrame({'Sentiment':sentiment_count.index, 'Tweets':sentiment_count.values})
-if not st.sidebar.checkbox("Hide", True):
+if not st.sidebar.checkbox("Hide", False):
     st.markdown("### Number of tweets by sentiment")
     if select == 'Bar plot':
         fig = px.bar(sentiment_count, x='Sentiment', y='Tweets', color='Tweets', height=500)
@@ -72,7 +72,7 @@ if not st.sidebar.checkbox("Close", True, key='2'):
         st.plotly_chart(fig_2)
 
 # Create a sidebar widget to break down each airline by sentiment
-@st.cache(persist=True)
+@st.cache_data(persist=True)
 def plot_sentiment(airline):
     df = data[data['airline']==airline]
     count = df['airline_sentiment'].value_counts()
