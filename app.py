@@ -1,4 +1,5 @@
 # Import necessary libraries
+from io import BytesIO
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -114,7 +115,10 @@ if not st.sidebar.checkbox("Hide", True, key='3'):
     words = ' '.join(df['text'])
     processed_words = ' '.join([word for word in words.split() if 'http' not in word and not word.startswith('@') and word != 'RT'])
     wordcloud = WordCloud(stopwords=STOPWORDS, background_color='white', width=800, height=640).generate(processed_words)
-    plt.imshow(wordcloud)
-    plt.xticks([])
-    plt.yticks([])
-    st.pyplot()
+
+    # Save the WordCloud image to BytesIO
+    img_stream = BytesIO()
+    wordcloud.to_image().save(img_stream, format='PNG')
+
+    # Display the image using Streamlit
+    st.image(img_stream)
