@@ -8,7 +8,6 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-# Set up the title and description of the dashboard using markdown syntax
 st.title("✈️ Sentiment Analysis of US Airlines Tweets Dashboard")
 st.sidebar.title("Navigation & Filters")
 st.markdown("""
