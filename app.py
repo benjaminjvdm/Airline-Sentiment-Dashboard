@@ -218,7 +218,7 @@ try:
     response = requests.get(image_url)
     response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
     image = response.content
-    st.sidebar.image(image, caption="Moon Benjee (문벤지)", use_container_width=True)
+    st.sidebar.image(image, caption="Moon Benjee (문벤지)")
 except requests.exceptions.RequestException as e:
     st.sidebar.error(f"Error loading image: {e}")  # Use st.error for better visibility
 
