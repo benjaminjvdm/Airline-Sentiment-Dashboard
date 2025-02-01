@@ -7,6 +7,7 @@ from plotly.subplots import make_subplots  # Added missing import
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 from datetime import datetime
+import requests
 
 with st.sidebar:
     st.subheader("About the Author")
